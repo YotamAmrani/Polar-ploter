@@ -95,19 +95,19 @@ void auto_homing(StepperController *stepper_c)
     }
     
 
-    while(digitalRead(X_LIMIT_SW_PIN) && digitalRead(Y_LIMIT_SW_PIN)){
+    while(digitalRead(LEFT_LIMIT_SW_PIN) && digitalRead(RIGHT_LIMIT_SW_PIN)){
       stepper_c->move_step(3, 3);
       Serial.println("XY");
       
     }
     
-    while(digitalRead(X_LIMIT_SW_PIN)){
+    while(digitalRead(LEFT_LIMIT_SW_PIN)){
       stepper_c->move_step(1, 1);
       Serial.println("X");
     }
     Serial.println("Moved X UP.");
 
-    while(digitalRead(Y_LIMIT_SW_PIN)){
+    while(digitalRead(RIGHT_LIMIT_SW_PIN)){
       stepper_c->move_step(2, 2);
       Serial.println("Y");
     }
@@ -211,8 +211,8 @@ void setup()
     auto_homing(&stepper_c);
     // test_draw(&stepper_c);
     state.sys_mode = IDLE;
-    pinMode(X_LIMIT_SW_PIN, INPUT_PULLUP);  
-    pinMode(Y_LIMIT_SW_PIN, INPUT_PULLUP);  
+    pinMode(LEFT_LIMIT_SW_PIN, INPUT_PULLUP);  
+    pinMode(RIGHT_LIMIT_SW_PIN, INPUT_PULLUP);  
 }
 
 void loop()

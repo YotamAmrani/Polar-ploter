@@ -15,16 +15,16 @@
 // LED
 #define LED_DEBOUNCE_TIME 300
 
-// STEPERS CONFIGURATIONS
-#define X_STEP_PIN 5
-#define Y_STEP_PIN 6
-#define X_DIR_PIN 2
-#define Y_DIR_PIN 3
+// STEPERS CONFIGURATIONS - steps pins and directions pins of left/right timing strips.
+#define LEFT_STEP_PIN 5
+#define RIGHT_STEP_PIN 6
+#define LEFT_DIR_PIN 2
+#define RIGHT_DIR_PIN 3
 #define EN_PIN 8
 
 // LIMIT SWITCHES
-#define X_LIMIT_SW_PIN 10
-#define Y_LIMIT_SW_PIN 11
+#define LEFT_LIMIT_SW_PIN 10
+#define RIGHT_LIMIT_SW_PIN 11
 
 // ENCODERS PINS
 #define ENCODER_A_BIT_1 (A1) // input IO for gray code bit 0 

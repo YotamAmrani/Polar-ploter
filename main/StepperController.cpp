@@ -1,7 +1,7 @@
 #include "StepperController.h"
 
-StepperController::StepperController(Servo *pen_controller) : step_pin_{X_STEP_PIN, Y_STEP_PIN},
-                                         dir_pin_{X_DIR_PIN, Y_DIR_PIN},
+StepperController::StepperController(Servo *pen_controller) : step_pin_{LEFT_STEP_PIN, RIGHT_STEP_PIN},
+                                         dir_pin_{LEFT_DIR_PIN, RIGHT_DIR_PIN},
                                          servo_control_pin_(SERVO_COMMAND_PIN),
                                          en_pin_(EN_PIN), steps_counter_{0, 0},
                                          max_steps_{mm_to_steps(X_MM_LIMIT, X_STEPS_PER_MM), mm_to_steps(Y_MM_LIMIT, Y_STEPS_PER_MM)},
@@ -78,11 +78,12 @@ int StepperController::get_servo_value(){
   return servo_value_;
 }
 
-void StepperController::set_limits(int x_steps_max, int y_steps_max, int x_steps_min, int y_steps_min){
-  max_steps_[LEFT_STRIP_AXIS] = mm_to_steps(x_steps_max, X_STEPS_PER_MM);
-  max_steps_[RIGHT_STRIP_AXIS] = mm_to_steps(y_steps_max, Y_STEPS_PER_MM);
-  min_steps_[LEFT_STRIP_AXIS] = mm_to_steps(x_steps_min, X_STEPS_PER_MM);
-  min_steps_[RIGHT_STRIP_AXIS] = mm_to_steps(y_steps_min, Y_STEPS_PER_MM);
+//int left_steps_max, int right_steps_max, int left_steps_min, int right_steps_min
+void StepperController::set_limits(int left_steps_max, int right_steps_max, int left_steps_min, int right_steps_min){
+  max_steps_[LEFT_STRIP_AXIS] = mm_to_steps(left_steps_max, X_STEPS_PER_MM);
+  max_steps_[RIGHT_STRIP_AXIS] = mm_to_steps(right_steps_max, Y_STEPS_PER_MM);
+  min_steps_[LEFT_STRIP_AXIS] = mm_to_steps(left_steps_min, X_STEPS_PER_MM);
+  min_steps_[RIGHT_STRIP_AXIS] = mm_to_steps(right_steps_min, Y_STEPS_PER_MM);
   }
 
 /*    GETTERS    **/
