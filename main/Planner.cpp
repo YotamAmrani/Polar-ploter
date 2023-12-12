@@ -254,8 +254,8 @@ void Planner::test_print()
 
 void Planner::convert_to_cartesian(int &x, int &y){
   // Extract the current length of the timing strips in MM
-  double l1 = (stepper_c_->get_steps_count()[LEFT_STRIP_AXIS]/X_STEPS_PER_MM);
-  double l2 = (stepper_c_->get_steps_count()[RIGHT_STRIP_AXIS]/Y_STEPS_PER_MM);
+  double l1 = (stepper_c_->get_steps_count()[LEFT_STRIP_AXIS]/LEFT_STEPS_PER_MM);
+  double l2 = (stepper_c_->get_steps_count()[RIGHT_STRIP_AXIS]/RIGHT_STEPS_PER_MM);
 
   // calculate the current height and width
   /**
@@ -275,8 +275,7 @@ void Planner::convert_to_cartesian(int &x, int &y){
 void Planner::convert_to_polar(int16_t x,int16_t y,long *l1, long *l2) {
   long h = (-1*int(y)) - long(Y_OFFSET);
   long w = -1*(int(x) - long(X_OFFSET) - long(MOTORS_DISTANCE));
-  *l2 = long(sqrt(h*h+w*w)*X_STEPS_PER_MM);
+  *l2 = long(sqrt(h*h+w*w)*LEFT_STEPS_PER_MM);
   w = w - int(MOTORS_DISTANCE);
-  *l1 = long(sqrt(h*h+w*w)*Y_STEPS_PER_MM);
+  *l1 = long(sqrt(h*h+w*w)*RIGHT_STEPS_PER_MM);
 }
-

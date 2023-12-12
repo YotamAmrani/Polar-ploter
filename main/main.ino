@@ -89,8 +89,8 @@ void auto_homing(StepperController *stepper_c)
     stepper_c->set_enable(true);
     stepper_c->set_servo_value(PEN_OFF);
 
-    stepper_c->set_steps_count((X_MM_LIMIT-250)*X_STEPS_PER_MM, (Y_MM_LIMIT-250)*Y_STEPS_PER_MM);
-    while(stepper_c->get_steps_count()[LEFT_STRIP_AXIS] < (X_MM_LIMIT)*X_STEPS_PER_MM){
+    stepper_c->set_steps_count((X_MM_LIMIT-250)*LEFT_STEPS_PER_MM, (Y_MM_LIMIT-250)*RIGHT_STEPS_PER_MM);
+    while(stepper_c->get_steps_count()[LEFT_STRIP_AXIS] < (X_MM_LIMIT)*LEFT_STEPS_PER_MM){
       stepper_c->move_step(3, 0);
     }
     
@@ -114,9 +114,9 @@ void auto_homing(StepperController *stepper_c)
     Serial.println("Moved Y UP.");
     print_current_position();
 
-    stepper_c->set_steps_count(520*X_STEPS_PER_MM,520*Y_STEPS_PER_MM);
+    stepper_c->set_steps_count(520*LEFT_STEPS_PER_MM,520*RIGHT_STEPS_PER_MM);
     
-    while(stepper_c->get_steps_count()[LEFT_STRIP_AXIS] < 590*X_STEPS_PER_MM || stepper_c->get_steps_count()[RIGHT_STRIP_AXIS] < 590*Y_STEPS_PER_MM){
+    while(stepper_c->get_steps_count()[LEFT_STRIP_AXIS] < 590*LEFT_STEPS_PER_MM || stepper_c->get_steps_count()[RIGHT_STRIP_AXIS] < 590*RIGHT_STEPS_PER_MM){
       stepper_c->move_step(3, 0);
     }
 
@@ -154,9 +154,9 @@ void convert_to_polar(double x,double y,int &l1, int &l2) {
   double h = (-1*y) - Y_OFFSET;
   double w = -1*(x - X_OFFSET - double(MOTORS_DISTANCE));
 
-  l2 = int(sqrt(h*h+w*w))*X_STEPS_PER_MM;
+  l2 = int(sqrt(h*h+w*w))*LEFT_STEPS_PER_MM;
   w = w - double(MOTORS_DISTANCE);
-  l1 = int(sqrt(h*h+w*w))*Y_STEPS_PER_MM;
+  l1 = int(sqrt(h*h+w*w))*RIGHT_STEPS_PER_MM;
 }
 
 void print_current_position()
@@ -171,7 +171,7 @@ void print_current_position()
 void print_current_coordinate_position(){
   int x = 0;
   int y = 0;
-  stepper_c.convert_to_cartesian(x,y, double(stepper_c.get_steps_count()[LEFT_STRIP_AXIS]/X_STEPS_PER_MM), double(stepper_c.get_steps_count()[RIGHT_STRIP_AXIS]/Y_STEPS_PER_MM));
+  stepper_c.convert_to_cartesian(x,y, double(stepper_c.get_steps_count()[LEFT_STRIP_AXIS]/LEFT_STEPS_PER_MM), double(stepper_c.get_steps_count()[RIGHT_STRIP_AXIS]/RIGHT_STEPS_PER_MM));
   Serial.print("X coordinate: ");
   Serial.print(x);
   Serial.print(",");

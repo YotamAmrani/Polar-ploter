@@ -46,8 +46,8 @@
 // SYSTEM CONFIGURATIONS
 #define STEP_PULSE_LENGTH 20
 #define STEPS_RATE 1500
-#define X_STEPS_PER_MM (12.5)
-#define Y_STEPS_PER_MM (12.5)
+#define LEFT_STEPS_PER_MM (12.5)
+#define RIGHT_STEPS_PER_MM (12.5)
 
 // SOFT LIMITS SETTINGS
 #define ENABLE_SOFT_LIMIT 1 // uncomment to disable soft limits

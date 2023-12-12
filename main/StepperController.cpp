@@ -4,8 +4,8 @@ StepperController::StepperController(Servo *pen_controller) : step_pin_{LEFT_STE
                                          dir_pin_{LEFT_DIR_PIN, RIGHT_DIR_PIN},
                                          servo_control_pin_(SERVO_COMMAND_PIN),
                                          en_pin_(EN_PIN), steps_counter_{0, 0},
-                                         max_steps_{mm_to_steps(X_MM_LIMIT, X_STEPS_PER_MM), mm_to_steps(Y_MM_LIMIT, Y_STEPS_PER_MM)},
-                                         min_steps_{mm_to_steps(X_MM_MIN_LIMIT, X_STEPS_PER_MM), mm_to_steps(Y_MM_MIN_LIMIT, Y_STEPS_PER_MM)},
+                                         max_steps_{mm_to_steps(X_MM_LIMIT, LEFT_STEPS_PER_MM), mm_to_steps(Y_MM_LIMIT, RIGHT_STEPS_PER_MM)},
+                                         min_steps_{mm_to_steps(X_MM_MIN_LIMIT, LEFT_STEPS_PER_MM), mm_to_steps(Y_MM_MIN_LIMIT, RIGHT_STEPS_PER_MM)},
                                          pen_controller_(pen_controller),servo_value_(0)
 
 {
@@ -80,10 +80,10 @@ int StepperController::get_servo_value(){
 
 //int left_steps_max, int right_steps_max, int left_steps_min, int right_steps_min
 void StepperController::set_limits(int left_steps_max, int right_steps_max, int left_steps_min, int right_steps_min){
-  max_steps_[LEFT_STRIP_AXIS] = mm_to_steps(left_steps_max, X_STEPS_PER_MM);
-  max_steps_[RIGHT_STRIP_AXIS] = mm_to_steps(right_steps_max, Y_STEPS_PER_MM);
-  min_steps_[LEFT_STRIP_AXIS] = mm_to_steps(left_steps_min, X_STEPS_PER_MM);
-  min_steps_[RIGHT_STRIP_AXIS] = mm_to_steps(right_steps_min, Y_STEPS_PER_MM);
+  max_steps_[LEFT_STRIP_AXIS] = mm_to_steps(left_steps_max, LEFT_STEPS_PER_MM);
+  max_steps_[RIGHT_STRIP_AXIS] = mm_to_steps(right_steps_max, RIGHT_STEPS_PER_MM);
+  min_steps_[LEFT_STRIP_AXIS] = mm_to_steps(left_steps_min, LEFT_STEPS_PER_MM);
+  min_steps_[RIGHT_STRIP_AXIS] = mm_to_steps(right_steps_min, RIGHT_STEPS_PER_MM);
   }
 
 /*    GETTERS    **/
@@ -162,8 +162,8 @@ bool StepperController::is_in_bounding_box(int current_step_mask, int current_di
   // Extract the current length of the timing strips in MM
   int current_step_l1 = bit_to_sign(current_direction_mask, 1 << LEFT_STRIP_AXIS) * bit_istrue(current_step_mask, 1 << LEFT_STRIP_AXIS);
   int current_step_l2 = bit_to_sign(current_direction_mask, 1 << RIGHT_STRIP_AXIS) * bit_istrue(current_step_mask, 1 << RIGHT_STRIP_AXIS);
-  double l1 = (this->get_steps_count()[LEFT_STRIP_AXIS]/X_STEPS_PER_MM) + current_step_l1;
-  double l2 = (this->get_steps_count()[RIGHT_STRIP_AXIS]/Y_STEPS_PER_MM) + current_step_l2;
+  double l1 = (this->get_steps_count()[LEFT_STRIP_AXIS]/LEFT_STEPS_PER_MM) + current_step_l1;
+  double l2 = (this->get_steps_count()[RIGHT_STRIP_AXIS]/RIGHT_STEPS_PER_MM) + current_step_l2;
   
   convert_to_cartesian(x, y, l1, l2);
 
