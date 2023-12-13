@@ -54,7 +54,7 @@ void StepperController::set_steps_count(int x_steps, int y_steps)
   steps_counter_[RIGHT_STRIP_AXIS] = y_steps;
 }
 
-// TODO
+
 void StepperController::set_servo_value(int servo_value)
 {
   if (servo_value != servo_value_){

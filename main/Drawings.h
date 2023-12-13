@@ -9,7 +9,6 @@ class Drawing
 private:
 public:
     bool is_random_;
-    // String drawing_name_;
     const int16_t (*segments_)[N_INSTRUCTIONS];
     const int drawing_size_;
     const unsigned long drawing_speed_;

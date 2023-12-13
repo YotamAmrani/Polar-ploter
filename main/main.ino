@@ -9,7 +9,7 @@
 void print_current_position();
 
 sys_state state = {IDLE, micros()};
-Servo pen_controller;
+Servo pen_controller; 
 StepperController stepper_c = StepperController(&pen_controller);
 int current_steps_mask = 0;
 int current_direction_mask = 0;
@@ -24,11 +24,6 @@ Encoder encoder_a = Encoder(ENCODER_A_BIT_0, ENCODER_A_BIT_1, ENCODER_A_BUTTON,'
 Encoder encoder_b = Encoder(ENCODER_B_BIT_0, ENCODER_B_BIT_1, ENCODER_B_BUTTON,'B',true);
 unsigned long test_timer = 0;
 int pen_state = PEN_OFF;
-
-// Random offset to drawings
-
-
-
 
 void state_handler(int current_steps_mask, int pen_state, StepperController *stepper_c)
 {
@@ -53,7 +48,7 @@ void state_handler(int current_steps_mask, int pen_state, StepperController *ste
     }
     else
     {
-        if (state.sys_mode == MOVE && (micros() - state.last_move_time_stamp) > LED_DEBOUNCE_TIME)
+        if (state.sys_mode == MOVE && (micros() - state.last_move_time_stamp) > PEN_DEBOUNCE_TIME)
         {
             state.sys_mode = IDLE;
             // stepper_c->set_enable(false);

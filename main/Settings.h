@@ -13,7 +13,7 @@
 #define DIRECTION_INVERT_MASK 3
 
 // LED
-#define LED_DEBOUNCE_TIME 300
+#define PEN_DEBOUNCE_TIME 300
 
 // STEPERS CONFIGURATIONS - steps pins and directions pins of left/right timing strips.
 #define LEFT_STEP_PIN 5
@@ -59,6 +59,7 @@
 #define LEFT_STRIP_MIN_LENGTH_MM 100
 #define RIGHT_STRIP_MAX_LENGTH_MM 1000
 #define LEFT_STRIP_MAX_LENGTH_MM 1000
+
 
 #define MOTORS_DISTANCE (850) // MM distance between the motors
 #define X_OFFSET (-425) // offset for the cartesian coortdinates system
