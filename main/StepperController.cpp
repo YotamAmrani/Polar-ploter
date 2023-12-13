@@ -4,8 +4,8 @@ StepperController::StepperController(Servo *pen_controller) : step_pin_{LEFT_STE
                                          dir_pin_{LEFT_DIR_PIN, RIGHT_DIR_PIN},
                                          servo_control_pin_(SERVO_COMMAND_PIN),
                                          en_pin_(EN_PIN), steps_counter_{0, 0},
-                                         max_steps_{mm_to_steps(X_MM_LIMIT, LEFT_STEPS_PER_MM), mm_to_steps(Y_MM_LIMIT, RIGHT_STEPS_PER_MM)},
-                                         min_steps_{mm_to_steps(X_MM_MIN_LIMIT, LEFT_STEPS_PER_MM), mm_to_steps(Y_MM_MIN_LIMIT, RIGHT_STEPS_PER_MM)},
+                                         max_steps_{mm_to_steps(LEFT_STRIP_INIT_MAX_LENGTH_MM, LEFT_STEPS_PER_MM), mm_to_steps(RIGHT_STRIP_INIT_MAX_LENGTH_MM, RIGHT_STEPS_PER_MM)},
+                                         min_steps_{mm_to_steps(LEFT_STRIP_MIN_LENGTH_MM, LEFT_STEPS_PER_MM), mm_to_steps(RIGHT_STRIP_MIN_LENGTH_MM, RIGHT_STEPS_PER_MM)},
                                          pen_controller_(pen_controller),servo_value_(0)
 
 {

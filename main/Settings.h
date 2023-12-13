@@ -52,13 +52,13 @@
 // SOFT LIMITS SETTINGS
 #define ENABLE_SOFT_LIMIT 1 // uncomment to disable soft limits
 #define AUTO_HOME_STEPS_RATE 2000
-#define X_MM_LIMIT 1100
-#define Y_MM_LIMIT 1100
+#define LEFT_STRIP_INIT_MAX_LENGTH_MM 1100
+#define RIGHT_STRIP_INIT_MAX_LENGTH_MM 1100
 
-#define Y_MM_MIN_LIMIT 100
-#define X_MM_MIN_LIMIT 100
-#define Y_MM_MAX_LIMIT 1000
-#define X_MM_MAX_LIMIT 1000
+#define RIGHT_STRIP_MIN_LENGTH_MM 100
+#define LEFT_STRIP_MIN_LENGTH_MM 100
+#define RIGHT_STRIP_MAX_LENGTH_MM 1000
+#define LEFT_STRIP_MAX_LENGTH_MM 1000
 
 #define MOTORS_DISTANCE (850) // MM distance between the motors
 #define X_OFFSET (-425) // offset for the cartesian coortdinates system

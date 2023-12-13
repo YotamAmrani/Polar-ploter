@@ -89,8 +89,8 @@ void auto_homing(StepperController *stepper_c)
     stepper_c->set_enable(true);
     stepper_c->set_servo_value(PEN_OFF);
 
-    stepper_c->set_steps_count((X_MM_LIMIT-250)*LEFT_STEPS_PER_MM, (Y_MM_LIMIT-250)*RIGHT_STEPS_PER_MM);
-    while(stepper_c->get_steps_count()[LEFT_STRIP_AXIS] < (X_MM_LIMIT)*LEFT_STEPS_PER_MM){
+    stepper_c->set_steps_count((LEFT_STRIP_INIT_MAX_LENGTH_MM-250)*LEFT_STEPS_PER_MM, (RIGHT_STRIP_INIT_MAX_LENGTH_MM-250)*RIGHT_STEPS_PER_MM);
+    while(stepper_c->get_steps_count()[LEFT_STRIP_AXIS] < (LEFT_STRIP_INIT_MAX_LENGTH_MM)*LEFT_STEPS_PER_MM){
       stepper_c->move_step(3, 0);
     }
     
@@ -122,7 +122,7 @@ void auto_homing(StepperController *stepper_c)
 
     Serial.println("Moved X axis to place.");
     Serial.println("Moved Y axis to place.");
-    stepper_c->set_limits(X_MM_MAX_LIMIT, Y_MM_MAX_LIMIT, X_MM_MIN_LIMIT,Y_MM_MIN_LIMIT);
+    stepper_c->set_limits(LEFT_STRIP_MAX_LENGTH_MM, RIGHT_STRIP_MAX_LENGTH_MM, LEFT_STRIP_MIN_LENGTH_MM,RIGHT_STRIP_MIN_LENGTH_MM);
 
     // Move to starting position with offsets 
     stepper_c->set_enable(true);
