@@ -12,7 +12,7 @@
 #define bit_to_sign(x, mask) (((x & mask) != 0) ? -1 : 1)
 #define DIRECTION_INVERT_MASK 3
 
-// LED
+// SERVO
 #define PEN_DEBOUNCE_TIME 300
 
 // STEPERS CONFIGURATIONS - steps pins and directions pins of left/right timing strips.
@@ -35,7 +35,7 @@
 #define ENCODER_B_BUTTON (A2) 
 #define ENCODER_READ_INTERVAL 200 //microseconds
 #define STEPS_PER_CLICK 300
-#define DIRECTION_CHANGE_DELAY 40
+//#define DIRECTION_CHANGE_DELAY 40
 
 // SERVO 
 #define SERVO_COMMAND_PIN (13) 
@@ -71,9 +71,6 @@
 #define MIN_X_VALUE (-280)
 #define MIN_Y_VALUE (-285)
 
-
-// AUTO HOME OFFSET
-#define MM_OFFSET 40
 
 // AUTO PRINTING8
 #define PENDING_TIME (1000000 * 180)
